@@ -39,7 +39,7 @@ ipconfig
 Use your laptop's Wi-Fi IPv4, not its gateway, Tailscale, or WSL address. The most recently observed hotspot address was `172.20.10.6`; it can change. If it changed, update the local firewall rule as described in PHONE_SETUP.md.
 
 ```powershell
-.\.venv\Scripts\python.exe phone_server.py --host 172.20.10.6 --port COM6
+.\.venv\Scripts\python.exe .\app\phone_server.py --host 172.20.10.6 --port COM6
 ```
 
 Open the newly printed CAMERA PAGE URL in iPhone Safari and tap Start camera. The existing trusted certificate can still be used; do not repeat certificate installation unless the certificate was replaced or expired. Each receiver restart creates a new session code.
@@ -82,7 +82,7 @@ This system does not evaluate spinal alignment, joint loading, pain, or overall 
 Optional no-camera output test (uses simulated reps and makes one short buzz):
 
 ```powershell
-.\.venv\Scripts\python.exe test_exercise_hardware.py --port COM6
+.\.venv\Scripts\python.exe .\app\test_exercise_hardware.py --port COM6
 ```
 
 Use this new test for exercise_oled.ino. The older test_hardware.py sends the old squat-only protocol and will not work with this sketch. The receiver reports a missing mode handshake if the new firmware is not running.

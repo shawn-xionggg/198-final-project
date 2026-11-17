@@ -189,8 +189,8 @@ def main():
     p.add_argument('--side',choices=['left','right'],default='left')
     p.add_argument('--down',type=float,help='Optional squat target override')
     p.add_argument('--up',type=float,help='Optional squat starting-angle override')
-    p.add_argument('--config',default=str(BASE/'exercise_config.json'),help='Range and whole-rep timing settings')
-    p.add_argument('--model',default=str(BASE/'yolo26n-pose.pt'))
+    p.add_argument('--config',default=str(BASE.parent/'exercise_config.json'),help='Range and whole-rep timing settings')
+    p.add_argument('--model',default='yolo26n-pose.pt')
     p.add_argument('--pair',action='store_true',help='Serve public certificate on HTTP 8080 for 10 minutes')
     args=p.parse_args()
     try: address=ipaddress.IPv4Address(args.host)
@@ -205,7 +205,7 @@ def main():
     except (OSError, ValueError, TypeError, KeyError) as error:
         p.error(f'Invalid exercise settings: {error}')
     from phone_tls import certificates
-    folder=BASE/'.phone-tls'
+    folder=BASE.parent/'.phone-tls'
     cert,fingerprint=certificates(folder,args.host)
     token=secrets.token_urlsafe(24)
     origin=f'https://{args.host}:8443'

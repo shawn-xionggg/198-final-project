@@ -13,7 +13,7 @@ $profile = Get-NetConnectionProfile -InterfaceIndex $address.InterfaceIndex
 if ($profile.NetworkCategory -ne 'Private') {
     throw 'Set ONLY your own hotspot connection to Private in Windows Wi-Fi properties, then retry.'
 }
-$pythonPath = Join-Path $PSScriptRoot '.venv\Scripts\python.exe'
+$pythonPath = Join-Path (Split-Path -Parent $PSScriptRoot) '.venv\Scripts\python.exe'
 if (-not (Test-Path -LiteralPath $pythonPath)) { throw 'Project Python environment is missing.' }
 Get-NetFirewallRule -DisplayName $ruleName -ErrorAction SilentlyContinue | Remove-NetFirewallRule
 $basePython = (& $pythonPath -c 'import sys; print(sys._base_executable)').Trim()

@@ -18,7 +18,7 @@ Find the IPv4 address under Wireless LAN adapter Wi-Fi. Use the laptop's address
 ## 2. Install laptop dependencies if not already installed
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements-phone.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
 The first model download needs internet if yolo26n-pose.pt is absent. Otherwise video processing is local; laptop updates and other apps may still use hotspot mobile data.
@@ -29,7 +29,7 @@ Replace the example IP. This script checks that the address belongs to the lapto
 
 ```powershell
 cd C:\coding\squat_counter
-powershell -NoProfile -ExecutionPolicy Bypass -File .\phone-firewall.ps1 -LaptopIP 172.20.10.2
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\phone-firewall.ps1 -LaptopIP 172.20.10.2
 ```
 
 ExecutionPolicy Bypass applies to this one script invocation, not a permanent system setting. You can inspect phone-firewall.ps1 first. Do not additionally accept a broad Public-networks firewall exception.
@@ -38,7 +38,7 @@ ExecutionPolicy Bypass applies to this one script invocation, not a permanent sy
 
 ```powershell
 cd C:\coding\squat_counter
-.\.venv\Scripts\python.exe phone_server.py --host 172.20.10.2 --pair
+.\.venv\Scripts\python.exe .\app\phone_server.py --host 172.20.10.2 --pair
 ```
 
 Leave it running. It prints a ONE-TIME CERTIFICATE address, a CAMERA PAGE address and a session code. The HTTP certificate download exists for 10 minutes, serves only the public certificate, and never accepts camera frames. If Safari cannot reach this address, first check the laptop IP and firewall. Host-to-client access over a hotspot must be verified on your phone; it is not guaranteed by the hotspot simply providing internet.
@@ -62,11 +62,11 @@ This uses the left hip/knee/ankle by default. Use --side right if that side face
 
 ## 7. Add the Arduino display
 
-First upload the sketch described in HARDWARE.md. Close Arduino Serial Monitor. Stop the receiver with Ctrl+C and restart it using your actual COM port:
+First upload the sketch described in EXERCISE_SETUP.md. Close Arduino Serial Monitor. Stop the receiver with Ctrl+C and restart it using your actual COM port:
 
 ```powershell
 .\.venv\Scripts\python.exe -m serial.tools.list_ports
-.\.venv\Scripts\python.exe phone_server.py --host 172.20.10.2 --port COM3
+.\.venv\Scripts\python.exe .\app\phone_server.py --host 172.20.10.2 --port COM3
 ```
 
 Reopen the new printed camera URL (session code changes each run). No --pair needed once the root is trusted. The Arduino detects missing updates after 3 seconds; stopping the phone camera therefore changes its display to disconnected. The original webcam command still works.
@@ -76,7 +76,7 @@ Reopen the new printed camera URL (session code changes each run). No --pair nee
 Tap Stop camera and press Ctrl+C in the laptop terminal. No receiver remains listening. To remove the firewall rule, run in Administrator PowerShell:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\phone-firewall.ps1 -LaptopIP 172.20.10.2 -Remove
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\phone-firewall.ps1 -LaptopIP 172.20.10.2 -Remove
 ```
 
 Remove the Squat Counter Local Camera profile in iPhone Settings > General > VPN & Device Management when no longer needed. Do not delete or replace the private certificate folder during normal use; doing so requires trusting a new certificate.

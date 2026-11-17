@@ -297,7 +297,7 @@ The working project is in C:\coding\squat_counter. The active phone workflow use
 | arduino\exercise_oled\exercise_oled.ino | Active OLED, touch, buzzer, and LED firmware |
 | squat_counter.py | Earlier webcam-only counter and the reusable angle helper |
 | yolo26n-pose.pt | Downloaded pretrained pose-model weights |
-| requirements-phone.txt | Phone-receiver dependency entry point |
+| requirements.txt | Phone-receiver dependency entry point |
 | test_exercise_hardware.py | Simulated good and flagged results for physical output testing |
 | test_exercise_logic.py and test_exercise_link.py | Movement and serial-protocol unit tests |
 | test_phone.py | Local HTTPS, session-code, payload, and endpoint checks |
@@ -328,7 +328,7 @@ USB read/write failures disable the display link and show a warning while phone 
 cd C:\coding\squat_counter
 ipconfig
 .\.venv\Scripts\python.exe -m serial.tools.list_ports
-.\.venv\Scripts\python.exe phone_server.py `
+.\.venv\Scripts\python.exe .\app\phone_server.py `
   --host 172.20.10.6 --port COM6
 ```
 
@@ -337,7 +337,7 @@ The address and port above are the last observed values, not permanent identifie
 ### Quick hardware check without movement
 
 ```powershell
-.\.venv\Scripts\python.exe test_exercise_hardware.py --port COM6
+.\.venv\Scripts\python.exe .\app\test_exercise_hardware.py --port COM6
 ```
 
 Run this only while the receiver and Serial Monitor are stopped. It sends simulated results: a passing event should flash D4, and a range failure should buzz. These are synthetic test events, not actual measured reps. The older test_hardware.py uses the previous protocol and is not the right test for the exercise sketch.
