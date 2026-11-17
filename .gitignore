@@ -1,0 +1,9 @@
+.venv/
+.phone-tls/
+.install-temp/
+.yolo/
+__pycache__/
+*.pyc
+*.log
+*.pt
+backups/

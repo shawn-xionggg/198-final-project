@@ -1,0 +1,14 @@
+{
+  "SQUAT": {
+    "start_angle": 160,
+    "target_angle": 100,
+    "min_seconds": 2,
+    "max_seconds": 6
+  },
+  "CURL": {
+    "start_angle": 155,
+    "target_angle": 55,
+    "min_seconds": 2,
+    "max_seconds": 6
+  }
+}
