@@ -298,9 +298,6 @@ The working project is in C:\coding\squat_counter. The active phone workflow use
 | squat_counter.py | Earlier webcam-only counter and the reusable angle helper |
 | yolo26n-pose.pt | Downloaded pretrained pose-model weights |
 | requirements.txt | Phone-receiver dependency entry point |
-| test_exercise_hardware.py | Simulated good and flagged results for physical output testing |
-| test_exercise_logic.py and test_exercise_link.py | Movement and serial-protocol unit tests |
-| test_phone.py | Local HTTPS, session-code, payload, and endpoint checks |
 
 ### Libraries and what they contribute
 
@@ -333,14 +330,6 @@ ipconfig
 ```
 
 The address and port above are the last observed values, not permanent identifiers. Open the new CAMERA PAGE URL printed after each restart. Tap Start camera in Safari. For right-side tracking, append --side right. A first-time certificate download uses --pair; normal runs do not need it.
-
-### Quick hardware check without movement
-
-```powershell
-.\.venv\Scripts\python.exe .\app\test_exercise_hardware.py --port COM6
-```
-
-Run this only while the receiver and Serial Monitor are stopped. It sends simulated results: a passing event should flash D4, and a range failure should buzz. These are synthetic test events, not actual measured reps. The older test_hardware.py uses the previous protocol and is not the right test for the exercise sketch.
 
 | Symptom | First checks |
 | --- | --- |
@@ -398,7 +387,7 @@ Show the system diagram. Point to the phone, laptop, Arduino, touch sensor, OLED
 
 ### One minute thirty to three minutes
 
-Demonstrate only behavior verified before the presentation. Show the selected mode, a complete attempt, and the counts. If a passing example is verified, show the LED. Show a controlled flagged example or the explicitly labeled simulated output test. Touch to switch modes and show that the new exercise is selected.
+Demonstrate only behavior verified before the presentation. Show the selected mode, a complete attempt, and the counts. If a passing example is verified, show the LED. Show a controlled flagged example if it has been verified. Touch to switch modes and show that the new exercise is selected.
 
 If live networking fails, use the backup recording and explain the failure accurately. Do not describe simulated messages as camera-recognized exercise.
 
@@ -438,7 +427,7 @@ The implementation flags missed configured range or total-time targets. It does 
 
 ### Why does the LED sometimes not light
 
-The LED is a pass indicator, not an attempt indicator. Both range and total time must pass, the Arduino must be receiving the current protocol, and the event must be new. Read the result and passes count, then isolate hardware with the simulated test if necessary.
+The LED is a pass indicator, not an attempt indicator. Both range and total time must pass, the Arduino must be receiving the current protocol, and the event must be new. Read the result and passes count, then check D4 wiring if necessary.
 
 ### Why not use a single angle threshold
 

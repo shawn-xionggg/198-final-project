@@ -79,14 +79,6 @@ This system does not evaluate spinal alignment, joint loading, pain, or overall 
 
 ## Physical acceptance checks
 
-Optional no-camera output test (uses simulated reps and makes one short buzz):
-
-```powershell
-.\.venv\Scripts\python.exe .\app\test_exercise_hardware.py --port COM6
-```
-
-Use this new test for exercise_oled.ino. The older test_hardware.py sends the old squat-only protocol and will not work with this sketch. The receiver reports a missing mode handshake if the new firmware is not running.
-
 Compare results against manual observations before presenting the prototype:
 
 | Test | Expected behavior |

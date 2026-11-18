@@ -17,10 +17,3 @@ Replace the example IP and COM port with your laptop's hotspot address and Ardui
 - [Presentation guide](docs/PRESENTATION_GUIDE.md)
 
 Edit `exercise_config.json` to change the range and timing targets. The model downloads on first run.
-
-Run automated tests from the repository root with:
-
-```powershell
-$env:PYTHONPATH = (Resolve-Path .\app).Path
-.\.venv\Scripts\python.exe -m unittest discover -s tests
-```
